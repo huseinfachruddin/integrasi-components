@@ -2,10 +2,10 @@ name: Publish Package to npm
 
 on:
   release:
-    types: [published] # jalan saat bikin release di GitHub
+    types: [published]
 
 permissions:
-  id-token: write   # penting buat OIDC login
+  id-token: write
   contents: read
 
 jobs:
@@ -13,13 +13,25 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: 'https://registry.npmjs.org/'
 
-      - run: npm ci
-      - run: npm test # kalau ada test, opsional
-      - run: npm publish --provenance --access public
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test --if-present
+
+      - name: Build package
+        run: npm run build --if-present
+
+      - name: Publish to npm
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
