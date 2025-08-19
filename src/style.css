@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lateef:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+/* style.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@source "../node_modules/flowbite-datepicker";
+
+@layer components {
+	.btn {
+		@apply inline-block px-4 py-2 rounded font-medium text-white transition-colors duration-200 disabled:opacity-50;
+	}
+
+	.btn-big {
+		@apply  h-[52px] w-full lg:w-auto flex items-center justify-center gap-2;
+		border-radius: 6px;
+		padding: 12px 20px;
+		font-size: 13px;
+	}
+
+	.btn-download{
+		@apply inline-flex items-center justify-center px-4 py-2 rounded bg-[#63C5B8] text-white hover:bg-[#63C5B8CC] transition-colors duration-200;
+	}
+
+	.btn-blue-light{
+		@apply bg-[#00B8D9] hover:bg-[#00B8D9CC] text-white;
+	}
+
+	.btn-primary {
+		@apply bg-primary hover:bg-primary-dark;
+	}
+
+	.btn-info {
+		@apply bg-info hover:bg-info-dark;
+	}
+
+	.btn-success {
+		@apply bg-success hover:bg-success-dark;
+	}
+
+	.btn-warning {
+		@apply bg-[#E09B3D] hover:bg-warning-dark;
+	}
+
+	.btn-danger {
+		@apply bg-[#C74C4D] hover:bg-danger-dark;
+	}
+
+	.btn-grey {
+		@apply bg-gray-500 hover:bg-gray-600;
+	}
+
+	.btn-secondary {
+		@apply bg-[#C0C0C0] hover:bg-[#A9A9A9];
+	}
+  
+	/* Basic Input Style */
+	.input {
+		@apply w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 transition duration-200;
+	}
+
+	/* Variants */
+	.input-primary {
+		@apply border-primary focus:ring-primary;
+
+	}
+
+	.label {
+		@apply flex items-center text-[#0F5EF7];
+		font-family: 'Montserrat', sans-serif;
+		height: 21px;
+		font-style: normal;
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 20px;
+		flex: none;
+		order: 0;
+		flex-grow: 0;
+	}
+
+	.input-info {
+		@apply border-info focus:ring-info;
+	}
+
+	.input-success {
+		@apply border-success focus:ring-success;
+	}
+
+	.input-warning {
+		@apply border-warning focus:ring-warning;
+	}
+
+	.input-danger {
+		@apply border-danger focus:ring-danger;
+	}
+
+	/* File Upload Wrapper */
+	.input-file-wrapper {
+		@apply flex items-center w-full rounded-lg border border-gray-300 overflow-hidden;
+	}
+
+	/* File Input (Hidden Native Input) */
+	.input-file {
+		@apply hidden;
+	}
+
+	/* Fake Input Text Area */
+	.input-file-text {
+		@apply flex-1 px-4 py-2 text-gray-700 bg-white;
+	}
+
+	/* Browse Button */
+	.input-file-btn {
+		@apply px-4 py-2 bg-primary text-white hover:bg-primary-dark transition-colors duration-200;
+	}
+
+	.font-monserrat {
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	.font-public-sans {
+		font-family: 'Public Sans', sans-serif;
+	}
+}
