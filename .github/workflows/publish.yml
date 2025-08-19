@@ -5,7 +5,7 @@ on:
     types: [published] # jalan saat bikin release di GitHub
 
 permissions:
-  id-token: write   # penting buat OIDC login
+  id-token: write # penting buat OIDC login
   contents: read
 
 jobs:
@@ -18,8 +18,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-          registry-url: 'https://registry.npmjs.org/'
+          registry-url: "https://registry.npmjs.org/"
 
       - run: npm ci
-      - run: npm test # kalau ada test, opsional
+      - run: npm build # kalau ada test, opsional
       - run: npm publish --provenance --access public
