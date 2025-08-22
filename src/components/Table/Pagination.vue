@@ -2,7 +2,7 @@
   <div class="flex items-center justify-between mt-4">
     <div class="text-sm text-gray-700">
       Menampilkan {{ startItem || 0 }} sampai {{ endItem || 0 }} dari
-      {{ pagination.total || 0 }} data
+      {{ pagination.total || 0 }} data dddd
     </div>
 
     <div class="flex items-center space-x-1">
@@ -46,7 +46,7 @@
         <Button
           v-for="page in visiblePages"
           :key="page"
-          :variant="page === currentPage ? 'primary' : 'none'"
+          :variant="page === currentPage ? 'primary' : 'secondary'"
           size="small"
           @click="goToPage(page)"
           class="p-2 m-1"
