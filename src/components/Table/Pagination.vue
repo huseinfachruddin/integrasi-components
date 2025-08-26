@@ -2,7 +2,7 @@
   <div class="flex items-center justify-between mt-4">
     <div class="text-sm text-gray-700">
       Menampilkan {{ startItem || 0 }} sampai {{ endItem || 0 }} dari
-      {{ pagination.total || 0 }} data dddd
+      {{ pagination.total || 0 }} data
     </div>
 
     <div class="flex items-center space-x-1">

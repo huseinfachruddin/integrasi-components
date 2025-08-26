@@ -12,6 +12,8 @@ import DateRangePicker from "@/components/Form/DateRangePicker.vue";
 import FileUpload from "@/components/Form/FileUpload.vue";
 import Input from "@/components/Form/Input.vue";
 import Radio from "@/components/Form/Radio.vue";
+import Search from "@/components/Form/Search.vue";
+import FileInput from "@/components/Form/FileInput.vue";
 
 const components = {
   Spinner,
@@ -26,6 +28,8 @@ const components = {
   FileUpload,
   Input,
   Radio,
+  Search,
+  FileInput,
 };
 
 export {
@@ -41,6 +45,8 @@ export {
   FileUpload,
   Input,
   Radio,
+  Search,
+  FileInput,
 };
 
 export default {
