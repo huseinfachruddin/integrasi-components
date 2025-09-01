@@ -1,19 +1,34 @@
 <!-- FileInput.vue -->
 <template>
-  <div class="input-file-wrapper">
-    <span class="input-file-text">{{ fileName || placeholder }}</span>
-    <label :for="id" class="input-file-btn cursor-pointer">Browse</label>
+  <div class="flex items-center gap-2">
+    <!-- Input text read-only untuk menampilkan nama file -->
+    <input
+      type="text"
+      :value="fileName || placeholder"
+      readonly
+      class="flex-1 border border-gray-300 rounded-l-md px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
+    />
+
+    <!-- Tombol Browse -->
+    <label
+      :for="id"
+      class="bg-blue-600 text-white px-4 py-2 text-sm rounded-r-md cursor-pointer hover:bg-blue-700"
+    >
+      Browse
+    </label>
+
+    <!-- Input file hidden -->
     <input
       :id="id"
       type="file"
-      class="input-file hidden"
+      class="hidden"
       :accept="accept"
       @change="handleFileChange"
     />
-
-    <!-- Pesan error -->
-    <p v-if="error" class="text-red-500 text-sm mt-2">{{ error }}</p>
   </div>
+
+  <!-- Pesan error -->
+  <p v-if="error" class="text-red-500 text-sm mt-1">{{ error }}</p>
 </template>
 
 <script setup>
@@ -22,9 +37,8 @@ import { ref } from "vue";
 const props = defineProps({
   id: { type: String, default: "file" },
   accept: { type: String, default: ".png,.jpg,.jpeg" },
-  maxSize: { type: Number, default: 2 * 1024 * 1024 }, // 2 MB
-  placeholder: { type: String, default: "Pilih file..." },
-  uploadUrl: { type: String, default: "" }, // jika ingin langsung upload ke server
+  maxSize: { type: Number, default: 2 * 1024 * 1024 }, // 2MB
+  placeholder: { type: String, default: "Select" },
 });
 
 const emit = defineEmits(["update:modelValue", "error"]);
@@ -32,15 +46,14 @@ const emit = defineEmits(["update:modelValue", "error"]);
 const fileName = ref("");
 const error = ref("");
 
-// Handle file change
-const handleFileChange = async (e) => {
+const handleFileChange = (e) => {
   const file = e.target.files[0];
   if (!file) return;
 
   const extension = file.name.split(".").pop().toLowerCase();
   const allowedExtensions = props.accept.replace(/\./g, "").split(",");
 
-  // validasi extension
+  // Validasi ekstensi
   if (!allowedExtensions.includes(extension)) {
     error.value = `File harus berupa: ${allowedExtensions.join(", ")}`;
     emit("error", error.value);
@@ -48,7 +61,7 @@ const handleFileChange = async (e) => {
     return;
   }
 
-  // validasi size
+  // Validasi ukuran
   if (file.size > props.maxSize) {
     error.value = `Ukuran maksimal ${(props.maxSize / (1024 * 1024)).toFixed(
       1
@@ -60,63 +73,13 @@ const handleFileChange = async (e) => {
 
   error.value = "";
   fileName.value = file.name;
-
-  let fileUrl = "";
-  if (props.uploadUrl) {
-    // contoh upload dengan fetch (bisa ganti axios)
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try {
-      const res = await fetch(props.uploadUrl, {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      fileUrl = data.url || ""; // sesuaikan dengan response server
-    } catch (err) {
-      error.value = "Upload gagal";
-      emit("error", error.value);
-      return;
-    }
-  } else {
-    // fallback: fake url
-    fileUrl = `https://example.com/uploads/${file.name}`;
-  }
-
-  const fileData = {
-    extension,
-    size: file.size,
-    file_name: file.name,
-    file_url: fileUrl,
-  };
-
-  emit("update:modelValue", fileData);
+  emit("update:modelValue", file);
 };
 </script>
 
 <style scoped>
-.input-file-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.input-file-text {
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  min-width: 200px;
-}
-
-.input-file-btn {
-  background: #4f46e5;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 6px;
-}
-
-.input-file-btn:hover {
-  background: #4338ca;
+/* Opsional: hilangkan outline default di Chrome */
+input:focus {
+  outline: none;
 }
 </style>
