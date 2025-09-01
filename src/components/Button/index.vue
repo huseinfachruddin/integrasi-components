@@ -12,7 +12,7 @@
 
 <script setup>
 import { computed } from 'vue'
-
+import '@/style.css'
 const props = defineProps({
 	variant: {
 		type: String,

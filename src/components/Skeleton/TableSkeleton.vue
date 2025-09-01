@@ -1,4 +1,3 @@
-// src/components/ui/TableSkeleton.vue
 <template>
 	<div :class="['overflow-x-auto', containerClass]">
 		<table :class="['min-w-full table-auto', tableClass]">

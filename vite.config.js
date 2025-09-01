@@ -1,12 +1,12 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import path from "path";
+import { defineConfig } from "vite"
+import vue from "@vitejs/plugin-vue"
+import path from "path"
 
 export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"), // ⬅️ di sini kita mapping @ -> folder src
+      "@": path.resolve(__dirname, "./src"),
     },
   },
   build: {
@@ -23,5 +23,6 @@ export default defineConfig({
         },
       },
     },
+    cssCodeSplit: true, // ⬅️ penting: biar CSS dipisah jadi dist/style.css
   },
-});
+})

@@ -20,7 +20,7 @@ const components = {
   Table,
   TablePagination,
   TableLimitor,
-  Selector,
+  Selector, 
   WYSWYG,
   Button,
   DatePicker,
