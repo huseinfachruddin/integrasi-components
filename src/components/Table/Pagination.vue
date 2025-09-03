@@ -46,7 +46,7 @@
         <Button
           v-for="page in visiblePages"
           :key="page"
-          :variant="page === currentPage ? 'primary' : 'secondary'"
+          :variant="page === currentPage ? 'primary' : 'none'"
           size="small"
           @click="goToPage(page)"
           class="p-2 m-1"
@@ -96,7 +96,7 @@
 
 <script setup>
 import { computed } from "vue";
-import Button from "@/components/Button/index.vue";
+import Button from "../Button/index.vue";
 import { IconChevronLeftPipe, IconChevronRightPipe } from "@tabler/icons-vue";
 
 const props = defineProps({

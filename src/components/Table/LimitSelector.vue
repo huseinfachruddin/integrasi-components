@@ -2,6 +2,7 @@
   <div class="flex items-center gap-4 mb-4">
     <label class="text-sm text-gray-700">Tampilkan:</label>
     <Select
+      :showDelete="false"
       :model-value="defaultLimit"
       :options="limitOptionsFormatted"
       label="Pilih limit"
