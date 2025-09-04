@@ -12,6 +12,10 @@ import DateRangePicker from "@/components/Form/DateRangePicker.vue";
 import FileUpload from "@/components/Form/FileUpload.vue";
 import Input from "@/components/Form/Input.vue";
 import Radio from "@/components/Form/Radio.vue";
+import Toggle from "@/components/Form/Toggle.vue";
+import Tab from "@/components/basics/Tab.vue";
+import Toast from "@/components/basics/Toast.vue";
+import Badge from "@/components/basics/Badge.vue";
 
 const components = {
   Spinner,
@@ -26,6 +30,10 @@ const components = {
   FileUpload,
   Input,
   Radio,
+  Toggle,
+  Tab,
+  Toast,
+  Badge,
 };
 
 export {
@@ -41,6 +49,10 @@ export {
   FileUpload,
   Input,
   Radio,
+  Toggle,
+  Tab,
+  Toast,
+  Badge,
 };
 
 export default {
