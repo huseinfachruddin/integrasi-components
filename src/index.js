@@ -16,6 +16,7 @@ import Toggle from "@/components/Form/Toggle.vue";
 import Tab from "@/components/basics/Tab.vue";
 import Toast from "@/components/basics/Toast.vue";
 import Badge from "@/components/basics/Badge.vue";
+import Tooltip from "./components/basics/Tooltip.vue";
 
 const components = {
   Spinner,
@@ -34,6 +35,7 @@ const components = {
   Tab,
   Toast,
   Badge,
+  Tooltip
 };
 
 export {
@@ -53,6 +55,7 @@ export {
   Tab,
   Toast,
   Badge,
+  Tooltip
 };
 
 export default {
