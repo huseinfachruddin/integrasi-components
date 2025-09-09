@@ -3,9 +3,11 @@
   "version": "1.0.15",
   "main": "dist/integrasi-components.js",
   "module": "dist/integrasi-components.es.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huseinfachruddin/integrasi-components"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
