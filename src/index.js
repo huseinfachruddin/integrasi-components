@@ -14,13 +14,14 @@ import Input from "@/components/Form/Input.vue";
 import Radio from "@/components/Form/Radio.vue";
 import Search from "@/components/Form/Search.vue";
 import FileInput from "@/components/Form/FileInput.vue";
+import Alert from "./components/basics/Alert.vue";
 
 const components = {
   Spinner,
   Table,
   TablePagination,
   TableLimitor,
-  Selector, 
+  Selector,
   WYSWYG,
   Button,
   DatePicker,
@@ -30,6 +31,7 @@ const components = {
   Radio,
   Search,
   FileInput,
+  Alert,
 };
 
 export {
@@ -47,6 +49,7 @@ export {
   Radio,
   Search,
   FileInput,
+  Alert,
 };
 
 export default {
