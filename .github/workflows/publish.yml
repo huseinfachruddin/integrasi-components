@@ -1,8 +1,9 @@
-name: Publish Package to npm
+name: Auto Publish to npm
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - production # hanya jalan kalau push ke branch 'production'
 
 permissions:
   id-token: write
@@ -30,6 +31,15 @@ jobs:
 
       - name: Build package
         run: npm run build --if-present
+
+      - name: Bump version automatically
+        run: |
+          npm version patch --no-git-tag-version
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          git commit -m "chore: bump version [skip ci]" || echo "No changes to commit"
+          git push origin production || echo "No changes to push"
 
       - name: Publish to npm
         run: npm publish --provenance --access public --no-git-tag-version
