@@ -1,4 +1,3 @@
-<!-- FileInput.vue -->
 <template>
   <div class="flex items-center gap-2">
     <!-- Input text read-only untuk menampilkan nama file -->
@@ -11,18 +10,29 @@
 
     <!-- Tombol Browse -->
     <label
-      :for="id"
-      class="bg-blue-600 text-white px-4 py-2 text-sm rounded-r-md cursor-pointer hover:bg-blue-700"
+      :for="inputId"
+      class="bg-blue-600 text-white px-4 py-2 text-sm cursor-pointer hover:bg-blue-700"
     >
       Browse
     </label>
 
+    <!-- Tombol Delete -->
+    <button
+      v-if="fileName"
+      type="button"
+      @click="deleteFile"
+      class="bg-red-600 text-white px-3 py-2 text-sm rounded-r-md hover:bg-red-700"
+    >
+      Hapus
+    </button>
+
     <!-- Input file hidden -->
     <input
-      :id="id"
+      :id="inputId"
       type="file"
       class="hidden"
       :accept="accept"
+      ref="fileInput"
       @change="handleFileChange"
     />
   </div>
@@ -32,10 +42,10 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 const props = defineProps({
-  id: { type: String, default: "file" },
+  id: { type: String, default: "" },
   accept: { type: String, default: ".png,.jpg,.jpeg" },
   maxSize: { type: Number, default: 2 * 1024 * 1024 }, // 2MB
   placeholder: { type: String, default: "Select" },
@@ -45,6 +55,10 @@ const emit = defineEmits(["update:modelValue", "error"]);
 
 const fileName = ref("");
 const error = ref("");
+const fileInput = ref(null);
+
+// ID unik untuk setiap komponen
+const inputId = computed(() => props.id || `file-input-${Math.random().toString(36).slice(2)}`);
 
 const handleFileChange = (e) => {
   const file = e.target.files[0];
@@ -63,9 +77,7 @@ const handleFileChange = (e) => {
 
   // Validasi ukuran
   if (file.size > props.maxSize) {
-    error.value = `Ukuran maksimal ${(props.maxSize / (1024 * 1024)).toFixed(
-      1
-    )} MB`;
+    error.value = `Ukuran maksimal ${(props.maxSize / (1024 * 1024)).toFixed(1)} MB`;
     emit("error", error.value);
     e.target.value = null;
     return;
@@ -75,10 +87,16 @@ const handleFileChange = (e) => {
   fileName.value = file.name;
   emit("update:modelValue", file);
 };
+
+const deleteFile = () => {
+  fileName.value = "";
+  error.value = "";
+  emit("update:modelValue", null);
+  if (fileInput.value) fileInput.value.value = null; // reset input file
+};
 </script>
 
 <style scoped>
-/* Opsional: hilangkan outline default di Chrome */
 input:focus {
   outline: none;
 }
