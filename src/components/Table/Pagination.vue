@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-between mt-4">
-    <div class="text-sm text-gray-700">
+    <div class="text-sm text-gray-700" v-if="showDataPage">
       Menampilkan {{ startItem || 0 }} sampai {{ endItem || 0 }} dari
       {{ pagination.total || 0 }} data
     </div>
@@ -113,6 +113,10 @@ const props = defineProps({
   defaultLimit: {
     type: Number,
     default: 10,
+  },
+  showDataPage: {
+    type: Boolean,
+    default: true,
   },
 });
 

@@ -1,6 +1,6 @@
 {
   "name": "integrasi-components",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "main": "dist/integrasi-components.js",
   "module": "dist/integrasi-components.es.js",
   "files": ["dist"],
